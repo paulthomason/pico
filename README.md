@@ -21,7 +21,7 @@ sudo raspi-config nonint do_spi 0
 
 Reboot after enabling SPI so the display can be accessed by the script.
 
-Download Pico‑8 for Raspberry Pi from <https://www.lexaloffle.com/pico‑8.php> and extract the binary somewhere accessible, for example `/opt/pico8`. The launcher expects the command `pico8` to be on your `PATH` or available via the `PICO8_PATH` environment variable.
+Download Pico‑8 for Raspberry Pi from <https://www.lexaloffle.com/pico‑8.php> and extract the binary somewhere accessible, for example `/home/<user>/pico-8`. The launcher expects the command `/home/<user>/pico-8/pico8` to be on your `PATH` or available via the `PICO8_PATH` environment variable.
 
 ### Running Pico‑8
 
