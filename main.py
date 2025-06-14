@@ -2998,7 +2998,9 @@ def start_pico8():
     """Launch the Pico-8 fantasy console if installed."""
     stop_scrolling()
     menu_instance.display_message_screen("PICO-8", "Launching...", delay=1)
-    cmd = os.environ.get("PICO8_PATH", "pico8")
+    # Default to pico8 installed under the user's home directory
+    default_cmd = os.path.expanduser("~/pico-8/pico8")
+    cmd = os.environ.get("PICO8_PATH", default_cmd)
     try:
         subprocess.run(
             [cmd, "-width", str(DISPLAY_WIDTH), "-height", str(DISPLAY_HEIGHT)],
