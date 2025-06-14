@@ -1,19 +1,12 @@
 # Mini OS
 
-The goal of this project is shifting toward running the Pico‑8 fantasy console directly on the ST7735 screen connected to a Raspberry Pi. What began as a simple menu driven interface is evolving into a lightweight launcher for Pico‑8 cartridges.
+Mini OS is a lightweight launcher for the Pico‑8 fantasy console. It runs on a small 128×128 ST7735 display attached to a Raspberry Pi and offers a simple menu for basic device tasks.
 
-The interface now includes a Settings screen. A **Display** submenu lets you change the LCD backlight brightness, choose a different font, select a color scheme and adjust the text size. Additional menu options briefly display the current date and time, a system monitor showing CPU temperature, load, frequency, memory and disk usage, and a network info screen with the current IP address and Wi-Fi SSID. Shutdown and Reboot options are available at the bottom of the Settings screen for safely powering off or restarting the Pi. An "Update and Restart" option pulls the latest code and restarts the service so the update takes effect. A "Git Pull" option on the Settings menu fetches the latest code without rebooting.
+The interface provides a **Settings** screen with a **Display** submenu for changing brightness, font, color scheme and text size. Utilities show the current date, time, system information and network details. You can also reboot or shut down the Pi.
 
-The color scheme selector now includes Mac&nbsp;Terminal palettes like **Terminal Basic**, **Grass**, **Man Page**, **Novel**, **Ocean**, **Red Sands**, **Espresso**, **Homebrew** and **Pro** in addition to the default theme.
-Your last selected scheme is written to `settings.json` so it loads the same palette after a reboot.
+Built‑in games, the image gallery and note taking features have been removed to keep the focus on Pico‑8 and these small utilities.
 
-Several small games are included: the reaction-based **Button Game**, the memory challenge **Launch Codes**, classics like **Snake** and **Tetris**, a simple **Rock Paper Scissors**, **Space Invaders**, and a text based adventure called **Vet Adventure**. Recent additions like **Axe**, **Trivia**, **Two Player Trivia**, **Hack In**, **Pico WoW**, and a minimalist top-down driving game **GTA 1997** round out the selection. They can be started from the **Games** submenu and make use of the three buttons and joystick directions for input.
-
-While these built‑in games remain, the long term goal is to launch the Pico‑8 application so that any cartridge can run full screen on the 128×128 display. Work is underway to streamline the interface for this purpose.
-
-An **Image Gallery** viewer is also included. Create an `images/` directory (the program will create it if missing) and place your 128x128 PNG or JPEG files there. When started from the menu you can flip through the pictures using the joystick left and right, and press the joystick in to return to the main menu.
-
-Selecting **Notes** from the main menu now opens a small submenu with **Novel Typer**, **Write Note** and **Read Note**. Write Note launches the onscreen keyboard for taking quick notes. Use the joystick to move the highlight and press it to select a key. The keyboard begins in uppercase mode and automatically switches to lowercase after the first letter is entered. Press **KEY1** to cycle between uppercase, lowercase and punctuation layouts, **KEY2** deletes the last character and **KEY3** saves the note. Novel Typer is an experimental text input method that uses all buttons and joystick directions: KEY1 changes letter pages, KEY2 deletes characters and KEY3 confirms the highlighted letter or exits. Read Note shows the text files stored in `/notes`; choose one to read it. While viewing a note you can press **KEY1** to edit the note, **KEY2** to delete it, and **KEY3** to return to the list (press **KEY3** again to go back to the main menu).
+The color scheme selector includes Mac&nbsp;Terminal palettes such as **Terminal Basic**, **Grass**, **Man Page**, **Novel**, **Ocean**, **Red Sands**, **Espresso**, **Homebrew** and **Pro** in addition to the default theme. Your last selected scheme is written to `settings.json` so it loads the same palette after a reboot.
 
 ## Setup on Raspberry Pi OS Lite (32-bit)
 
