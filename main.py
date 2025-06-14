@@ -951,7 +951,7 @@ menu_instance = None
 
 
 def run_git_pull():
-    """Update the mini_os directory using git pull."""
+    """Update the pico directory using git pull."""
     repo_dir = os.path.dirname(os.path.abspath(__file__))
     menu_instance.display_message_screen("Git Update", "Running git pull...", delay=1)
     try:

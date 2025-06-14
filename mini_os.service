@@ -6,9 +6,9 @@ After=network.target
 Type=simple
 # Adjust the paths below if the project lives elsewhere.
 # This example assumes it resides under the service user's home
-# directory at ~/mini_os.
-ExecStart=/usr/bin/python3 %h/mini_os/main.py
-WorkingDirectory=%h/mini_os
+# directory at ~/pico.
+ExecStart=/usr/bin/python3 %h/pico/main.py
+WorkingDirectory=%h/pico
 Restart=always
 User=pi
 Group=pi
