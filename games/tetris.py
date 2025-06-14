@@ -67,6 +67,8 @@ def start():
     board = [[0 for _ in range(BOARD_W)] for _ in range(BOARD_H)]
     running = True
     spawn_piece()
+    show_instructions()
+    time.sleep(2)
     draw()
     start_thread()
 
@@ -216,4 +218,13 @@ def draw_game_over():
     img = Image.new("RGB", (128, 128), "black")
     d = ImageDraw.Draw(img)
     d.text((20, 50), "Game Over", font=fonts[1], fill=(255, 0, 0))
+    thread_safe_display(img)
+
+
+def show_instructions():
+    img = Image.new("RGB", (128, 128), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5, 5), "Tetris", font=fonts[1], fill=(255, 255, 0))
+    d.text((5, 30), "Joy=Move, 1=Rotate", font=fonts[0], fill=(0, 255, 255))
+    d.text((5, 45), "3=Drop, 2=Quit", font=fonts[0], fill=(0, 255, 255))
     thread_safe_display(img)

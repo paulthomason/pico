@@ -359,6 +359,8 @@ def init(display_func, fonts_tuple, quit_callback):
 def start():
     global state
     state = "topics"
+    show_instructions()
+    time.sleep(2)
     draw_topics()
 
 
@@ -491,4 +493,13 @@ def draw_final():
     total = len(quiz_questions)
     d.text((25, 40), "Quiz Over", font=fonts[1], fill=(255, 255, 0))
     d.text((20, 70), f"Score: {score}/{total}", font=fonts[1], fill=(0, 255, 255))
+    thread_safe_display(img)
+
+
+def show_instructions():
+    img = Image.new("RGB", (128, 128), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5, 5), "Trivia", font=fonts[1], fill=(255, 255, 0))
+    d.text((5, 30), "1-3=Answer", font=fonts[0], fill=(0, 255, 255))
+    d.text((5, 45), "Joy=Quit", font=fonts[0], fill=(255, 0, 0))
     thread_safe_display(img)

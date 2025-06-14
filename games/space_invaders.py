@@ -34,6 +34,8 @@ def start():
     move_dir = 1
     invaders = [(x * 12 + 16, y * 10 + 10) for y in range(INV_ROWS) for x in range(INV_COLS)]
     running = True
+    show_instructions()
+    time.sleep(2)
     draw()
     start_thread()
 
@@ -132,4 +134,13 @@ def draw_victory():
     img = Image.new("RGB", (SCREEN_W, SCREEN_H), "black")
     d = ImageDraw.Draw(img)
     d.text((30, 50), "You Win", font=fonts[1], fill=(0, 255, 0))
+    thread_safe_display(img)
+
+
+def show_instructions():
+    img = Image.new("RGB", (SCREEN_W, SCREEN_H), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5, 5), "Space Invaders", font=fonts[1], fill=(255, 255, 0))
+    d.text((5, 30), "Joy=Move 1/Press=Fire", font=fonts[0], fill=(0, 255, 255))
+    d.text((5, 45), "2=Quit", font=fonts[0], fill=(255, 0, 0))
     thread_safe_display(img)

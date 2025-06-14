@@ -35,6 +35,8 @@ def start():
     place_food()
     update_thread = threading.Thread(target=game_loop, daemon=True)
     update_thread.start()
+    show_instructions()
+    time.sleep(2)
     draw()
 
 
@@ -119,3 +121,12 @@ def stop():
     if update_thread:
         update_thread.join()
     exit_cb()
+
+
+def show_instructions():
+    img = Image.new("RGB", (128, 128), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5, 5), "Snake", font=fonts[1], fill=(0, 255, 0))
+    d.text((5, 30), "Use joystick to move", font=fonts[0], fill=(0, 255, 255))
+    d.text((5, 45), "Key2 to exit", font=fonts[0], fill=(255, 0, 0))
+    thread_safe_display(img)

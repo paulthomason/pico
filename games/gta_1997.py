@@ -57,6 +57,8 @@ def start():
     start_time = time.time()
     update_thread = threading.Thread(target=game_loop, daemon=True)
     update_thread.start()
+    show_instructions()
+    time.sleep(2)
     draw()
 
 def handle_input(pin):
@@ -181,4 +183,13 @@ def draw_game_over():
     msg = "Time Up" if lives > 0 else "Game Over"
     d.text((30, 50), msg, font=fonts[1], fill=(255, 0, 0))
     d.text((30, 70), f"Score: {score}", font=fonts[1], fill=(0, 255, 255))
+    thread_safe_display(img)
+
+
+def show_instructions():
+    img = Image.new("RGB", (128, 128), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5,5), "GTA 1997", font=fonts[1], fill=(255,255,0))
+    d.text((5,30), "Joy=Move", font=fonts[0], fill=(0,255,255))
+    d.text((5,45), "2/Press=Quit", font=fonts[0], fill=(255,0,0))
     thread_safe_display(img)

@@ -67,6 +67,8 @@ def start():
     current_speed = BASE_SPEED
     score = 0
     start_thread()
+    show_instructions()
+    time.sleep(2)
 
 
 def start_thread():
@@ -270,4 +272,14 @@ def draw():
         fill_height = int(p_pos * (pow_bottom - pow_top))
         d.rectangle([pow_x0+1, pow_bottom-fill_height, pow_x1-1, pow_bottom-1], fill="gray")
         draw_axe(d, axe_x, axe_y)
+    thread_safe_display(img)
+
+
+def show_instructions():
+    img = Image.new("RGB", (SCREEN_W, SCREEN_H), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5, 5), "Axe Throw", font=fonts[1], fill="blue")
+    d.text((5, 30), "1=Lock Slider", font=fonts[0], fill="black")
+    d.text((5, 45), "2=Quit", font=fonts[0], fill="black")
+    d.text((5, 60), "Joy=Quit", font=fonts[0], fill="black")
     thread_safe_display(img)
