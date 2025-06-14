@@ -1,5 +1,5 @@
 [Unit]
-Description=Mini OS Menu Service
+Description=Mini OS Pico-8 Launcher
 After=network.target
 
 [Service]

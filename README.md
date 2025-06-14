@@ -1,6 +1,6 @@
 # Mini OS
 
-This repository contains a simple menu-based interface for a Raspberry Pi with an ST7735-based LCD display.
+The goal of this project is shifting toward running the Pico‑8 fantasy console directly on the ST7735 screen connected to a Raspberry Pi. What began as a simple menu driven interface is evolving into a lightweight launcher for Pico‑8 cartridges.
 
 The interface now includes a Settings screen. A **Display** submenu lets you change the LCD backlight brightness, choose a different font, select a color scheme and adjust the text size. Additional menu options briefly display the current date and time, a system monitor showing CPU temperature, load, frequency, memory and disk usage, and a network info screen with the current IP address and Wi-Fi SSID. Shutdown and Reboot options are available at the bottom of the Settings screen for safely powering off or restarting the Pi. An "Update and Restart" option pulls the latest code and restarts the service so the update takes effect. A "Git Pull" option on the Settings menu fetches the latest code without rebooting.
 
@@ -8,6 +8,8 @@ The color scheme selector now includes Mac&nbsp;Terminal palettes like **Termina
 Your last selected scheme is written to `settings.json` so it loads the same palette after a reboot.
 
 Several small games are included: the reaction-based **Button Game**, the memory challenge **Launch Codes**, classics like **Snake** and **Tetris**, a simple **Rock Paper Scissors**, **Space Invaders**, and a text based adventure called **Vet Adventure**. Recent additions like **Axe**, **Trivia**, **Two Player Trivia**, **Hack In**, **Pico WoW**, and a minimalist top-down driving game **GTA 1997** round out the selection. They can be started from the **Games** submenu and make use of the three buttons and joystick directions for input.
+
+While these built‑in games remain, the long term goal is to launch the Pico‑8 application so that any cartridge can run full screen on the 128×128 display. Work is underway to streamline the interface for this purpose.
 
 An **Image Gallery** viewer is also included. Create an `images/` directory (the program will create it if missing) and place your 128x128 PNG or JPEG files there. When started from the menu you can flip through the pictures using the joystick left and right, and press the joystick in to return to the main menu.
 
@@ -25,6 +27,12 @@ sudo raspi-config nonint do_spi 0
 ```
 
 Reboot after enabling SPI so the display can be accessed by the script.
+
+Download Pico‑8 for Raspberry Pi from <https://www.lexaloffle.com/pico‑8.php> and extract the binary somewhere accessible, for example `/opt/pico8`. The launcher expects the command `pico8` to be on your `PATH` or available via the `PICO8_PATH` environment variable.
+
+### Running Pico‑8
+
+Once Pico‑8 is installed you can start it from the main menu. The launcher simply executes the `pico8` command with `-width 128 -height 128` so the output fits the small screen. Your preferred cartridge can be specified with `-run <cart>`.
 
 ## Pin Assignments
 
