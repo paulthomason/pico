@@ -15,20 +15,8 @@ import shutil
 import socket
 import json
 import pexpect
-from games import (
-    snake,
-    tetris,
-    rps,
-    space_invaders,
-    vet_adventure,
-    axe,
-    trivia,
-    two_player_trivia,
-    hack_in,
-    pico_wow,
-    gta_1997,
-    doctor_mode,
-)
+# Games were previously imported here to provide a variety of built-in demos.
+# The menu has been simplified so these modules are no longer referenced.
 
 # Luma.lcd imports and setup
 from luma.core.interface.serial import spi
@@ -3006,6 +2994,23 @@ def start_console():
     start_shell(show_keyboard=False)
 
 
+def start_pico8():
+    """Launch the Pico-8 fantasy console if installed."""
+    stop_scrolling()
+    menu_instance.display_message_screen("PICO-8", "Launching...", delay=1)
+    cmd = os.environ.get("PICO8_PATH", "pico8")
+    try:
+        subprocess.run(
+            [cmd, "-width", str(DISPLAY_WIDTH), "-height", str(DISPLAY_HEIGHT)],
+            check=True,
+        )
+    except FileNotFoundError:
+        menu_instance.display_message_screen("PICO-8", "Command not found", delay=2)
+    except Exception as e:
+        menu_instance.display_message_screen("PICO-8", f"Failed: {e}", delay=2)
+    show_main_menu()
+
+
 
 
 def draw_sudo_password_screen():
@@ -3617,15 +3622,9 @@ def show_main_menu():
     stop_scrolling()
     menu_instance.max_visible_items = compute_max_visible_items(menu_instance.font)
     menu_instance.items = [
-        "Update and Restart",
-        "Games",
-        "Notes",
-        "Chat",
-        "Image Gallery",
         "Utilities",
-        "Weather",
-        "Top Stories",
         "Settings",
+        "Launch Pico-8",
     ]
     menu_instance.selected_item = 0
     menu_instance.view_start = 0
@@ -3664,27 +3663,12 @@ def handle_menu_selection(selection):
     print(f"Selected: {selection}") # This output goes to journalctl
     if selection == "Update and Restart":
         update_and_restart()
-    elif selection == "Games":
-        show_games_menu()
-    elif selection == "Notes":
-        show_notes_menu()
-        return
-    elif selection == "Chat":
-        start_chat()
-        return
-    elif selection == "Image Gallery":
-        start_image_gallery()
-        return
     elif selection == "Utilities":
         show_utilities_menu()
-    elif selection == "Weather":
-        show_weather()
-        return
-    elif selection == "Top Stories":
-        show_top_stories()
-        return
     elif selection == "Settings":
         show_settings_menu()
+    elif selection == "Launch Pico-8":
+        start_pico8()
     
     # After any program finishes, redraw the menu
     menu_instance.draw()
