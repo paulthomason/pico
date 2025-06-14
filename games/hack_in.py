@@ -29,6 +29,8 @@ def start():
     code_lines = []
     update_thread = threading.Thread(target=_loop, daemon=True)
     update_thread.start()
+    show_instructions()
+    time.sleep(2)
 
 
 def handle_input(pin):
@@ -78,4 +80,13 @@ def _draw():
         d.text((5, y), line, font=fonts[0], fill=(0, 255, 0))
         y += 12
     d.text((5, 115), "Press 3 to exit", font=fonts[0], fill=(255, 255, 0))
+    thread_safe_display(img)
+
+
+def show_instructions():
+    img = Image.new("RGB", (128, 128), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5,5), "Hack In", font=fonts[1], fill=(0,255,0))
+    d.text((5,30), "Watch the bar", font=fonts[0], fill=(0,255,255))
+    d.text((5,45), "3=Exit", font=fonts[0], fill=(255,0,0))
     thread_safe_display(img)

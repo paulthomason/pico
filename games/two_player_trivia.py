@@ -41,6 +41,8 @@ def start():
     question_idx = 0
     current_name = ""
     name_idx = 0
+    show_instructions()
+    time.sleep(2)
     draw_name_input()
 
 
@@ -236,5 +238,15 @@ def draw_final():
     else:
         winner = "Tie"
     d.text((5, 80), f"Winner: {winner}", font=fonts[1], fill=(0,255,0))
+    thread_safe_display(img)
+
+
+def show_instructions():
+    img = Image.new("RGB", (128, 128), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5,5), "2P Trivia", font=fonts[1], fill=(255,255,0))
+    d.text((5,30), "Left/Right=Buzz", font=fonts[0], fill=(0,255,255))
+    d.text((5,45), "1-3=Answer", font=fonts[0], fill=(0,255,255))
+    d.text((5,60), "Joy=Quit", font=fonts[0], fill=(255,0,0))
     thread_safe_display(img)
 

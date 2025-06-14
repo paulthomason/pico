@@ -20,6 +20,8 @@ def init(display_func, fonts_tuple, quit_callback):
 
 def start():
     generate_pet_db()
+    show_instructions()
+    time.sleep(2)
     next_event()
 
 
@@ -175,5 +177,14 @@ def draw():
             y += 12
     else:
         d.text((25, 70), "(Press)", font=fonts[0], fill=(0, 255, 255))
+    thread_safe_display(img)
+
+
+def show_instructions():
+    img = Image.new("RGB", (128, 128), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5,5), "Doctor Mode", font=fonts[1], fill=(255,255,0))
+    d.text((5,30), "1-3=Select", font=fonts[0], fill=(0,255,255))
+    d.text((5,45), "Joy=Quit", font=fonts[0], fill=(255,0,0))
     thread_safe_display(img)
     

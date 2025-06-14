@@ -17,6 +17,8 @@ def init(display_func, fonts_tuple, quit_callback):
 
 
 def start():
+    draw_instructions()
+    time.sleep(2)
     draw_prompt()
 
 
@@ -61,4 +63,13 @@ def draw_result(user, cpu, result):
     d.text((5, 5), f"You: {CHOICES[user]}", font=fonts[0], fill=(255, 255, 0))
     d.text((5, 20), f"CPU: {CHOICES[cpu]}", font=fonts[0], fill=(255, 255, 0))
     d.text((30, 60), result, font=fonts[1], fill=(255, 0, 0))
+    thread_safe_display(img)
+
+
+def draw_instructions():
+    img = Image.new("RGB", (128, 128), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5, 5), "Rock Paper Scissors", font=fonts[1], fill=(255, 255, 0))
+    d.text((5, 30), "1=Rock 2=Paper 3=Scissors", font=fonts[0], fill=(0, 255, 255))
+    d.text((5, 110), "Joy=Exit", font=fonts[0], fill=(255, 0, 0))
     thread_safe_display(img)

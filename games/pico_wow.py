@@ -60,6 +60,8 @@ def start():
     running = True
     update_thread = threading.Thread(target=_game_loop, daemon=True)
     update_thread.start()
+    show_instructions()
+    time.sleep(2)
     draw()
 
 
@@ -209,5 +211,15 @@ def draw_game_over():
     d = ImageDraw.Draw(img)
     d.text((20, 50), "Game Over", font=fonts[1], fill=(255, 0, 0))
     d.text((20, 70), f"Score: {score}", font=fonts[1], fill=(255, 255, 0))
+    thread_safe_display(img)
+
+
+def show_instructions():
+    img = Image.new("RGB", (SCREEN_W, SCREEN_H), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5,5), "Pico WoW", font=fonts[1], fill=(255,255,0))
+    d.text((5,30), "Joy=Move", font=fonts[0], fill=(0,255,255))
+    d.text((5,45), "1/Press=Attack", font=fonts[0], fill=(0,255,255))
+    d.text((5,60), "2=Quit", font=fonts[0], fill=(255,0,0))
     thread_safe_display(img)
 

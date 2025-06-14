@@ -236,6 +236,8 @@ def init(display_func, fonts_tuple, quit_callback):
 def start():
     global state
     state = "start"
+    show_instructions()
+    time.sleep(2)
     draw()
 
 
@@ -274,3 +276,12 @@ def draw():
     if state == "end":
         time.sleep(2)
         exit_cb()
+
+
+def show_instructions():
+    img = Image.new("RGB", (128, 128), "black")
+    d = ImageDraw.Draw(img)
+    d.text((5,5), "Vet Adventure", font=fonts[1], fill=(255,255,0))
+    d.text((5,30), "1-3=Choose", font=fonts[0], fill=(0,255,255))
+    d.text((5,45), "Joy=Quit", font=fonts[0], fill=(255,0,0))
+    thread_safe_display(img)
